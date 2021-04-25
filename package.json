@@ -1,0 +1,14 @@
+{
+  "name": "agate-api",
+  "version": "1.0.0",
+  "description": "Agate's API",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Priyanshu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
