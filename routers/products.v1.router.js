@@ -3,7 +3,7 @@ const router = express.Router()
 const { extend } = require("lodash")
 
 // Model
-const { Product } = require("../models/products.model.js")
+const Product = require("../models/product.model.js")
 
 router.route("/")
   .get(async (req, res) => {
