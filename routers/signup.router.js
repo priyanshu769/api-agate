@@ -25,7 +25,7 @@ router.route('/').post(async (req, res) => {
       const userSaved = await verifyNewUser.save()
       const token = jwt.sign({ userId: userSaved._id }, secretKey)
       const { password, __v, ...restUserData } = userSaved._doc
-      res.json({ success: false, user: restUserData, token })
+      res.json({ success: true, user: restUserData, token })
     } catch (error) {
       res.json({
         success: false,
