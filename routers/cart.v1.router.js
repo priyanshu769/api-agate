@@ -13,7 +13,7 @@ router
   .get(async (req, res) => {
     const userId = req.userId
     try {
-      const cartProducts = await CartProduct.find({ owner: userId })
+      const cartProducts = await CartProduct.find({ owner: userId }).populate("product").exec()
       res.json({ success: true, cartProducts })
     } catch (error) {
       res.json({

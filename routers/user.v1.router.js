@@ -13,8 +13,9 @@ router.use(verifyLoggedInUser)
 router.route('/').get(async (req, res) => {
   const { userId } = req
   try {
-    const user = await User.findById(userId).populate("wishlist").exec()
-    res.json({ success: true, user })
+    const user = await User.findById(userId).populate('wishlist').exec()
+    const { __v, password, ...restUserData } = user._doc
+    res.json({ success: true, user: restUserData })
   } catch (error) {
     res.json({
       success: false,
