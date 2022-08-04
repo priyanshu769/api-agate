@@ -23,6 +23,26 @@ router
       })
     }
   })
+router
+  .route('/emptyCart')
+  .post(async (req, res) => {
+    const userId = req.userId
+    try {
+      const cartProducts = await CartProduct.find({ owner: userId })
+      const emptyUserCart = cartProducts.forEach(async (cartProduct) => {
+        const deleteProducts = await CartProduct.findOneAndDelete({
+          owner: userId
+        })
+      })
+      res.json({ success: true, cartProducts, emptyUserCart })
+    } catch (error) {
+      res.json({
+        success: false,
+        message: 'Unable to fetch your cart products.',
+        errorMessage: error.message,
+      })
+    }
+  })
   .post(async (req, res) => {
     const product = req.body.productId
     const userId = req.userId
@@ -112,12 +132,12 @@ router.route('/:cartProductId/:type').post(async (req, res) => {
       const quantity = productInCart.quantity - 1
       const productUpdated = await CartProduct.findOneAndUpdate(
         {
-            _id: req.params.cartProductId
+          _id: req.params.cartProductId
         },
         { quantity },
-        )
-        const updatedProduct = await CartProduct.findById(req.params.cartProductId)
-        res.json({ success: true, updatedProduct })
+      )
+      const updatedProduct = await CartProduct.findById(req.params.cartProductId)
+      res.json({ success: true, updatedProduct })
     }
   } catch (error) {
     res.json({ success: false, message: 'Unable to update quantity.', errorMessage: error.message })
