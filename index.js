@@ -22,12 +22,14 @@ const user = require('./routers/user.v1.router')
 const login = require('./routers/login.router')
 const signup = require('./routers/signup.router')
 const cart = require('./routers/cart.v1.router')
+const orders = require('./routers/orders.v1.router')
 
 app.use('/products', products)
 app.use('/user', user)
 app.use('/login', login)
 app.use('/signup', signup)
 app.use('/cart', cart)
+app.use('/orders', orders)
 
 app.get('/', (req, res) => {
   res.send('Welcome to Agate API!')
