@@ -32,6 +32,10 @@ const ProductSchema = new mongoose.Schema({
     type: Number,
     min: 1,
     max: 5
+  },
+  category: {
+    type: String,
+    required: "Category is Required. Specify Head/Body/Legs/Others"
   }
 },{
     timestamps: true
